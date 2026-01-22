@@ -12,8 +12,9 @@ app.use(
     cors({
         origin: [
             "http://localhost:5173",
-            "https://job-portal-cd467.web.app",
-            "https://job-portal-cd467.firebaseapp.com",
+            "http://localhost:5174",
+            "https://jobcraft-portal.web.app",
+            "https://jobcraft-portal.firebaseapp.com",
         ],
         credentials: true,
     })
@@ -88,7 +89,7 @@ async function run() {
         app.post("/jwt", async (req, res) => {
             const user = req.body;
             const token = jwt.sign(user, process.env.JWT_SECRET_KEY, {
-                expiresIn: "10d",
+                expiresIn: "5000d",
             });
             res.cookie("token", token, cookieOptions).send({ success: true });
         });
